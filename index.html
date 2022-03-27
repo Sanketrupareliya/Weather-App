@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="header">
+        <div class="cityname">Rajkot</div>
+    </div>
+    <div class="search">
+        <div class="te">Enter City Name</div>
+        <input type="text" id="address" />
+        <button id="button" type="submit">Search</button>
+    </div>
+    <template id="templ">
+        <div class="grid">
+            <div class="flex">
+                <div class="loc">Location :</div>
+                <div id="location"></div>
+            </div>
+            <div class="flex">
+                <div class="des">Description :</div>
+                <div id="description"></div>
+            </div>
+            <div class="flex">
+                <div class="tem">Temprature :</div>
+                <div id="temp"></div>
+            </div>
+            <div class="flex">
+                <div class="feel">Feels Like :</div>
+                <div id="feelsLike"></div>
+            </div>
+            <div class="flex">
+                <div class="wi">Wind Speed :</div>
+                <div id="wind"></div>
+            </div>
+            <div class="flex">
+                <div class="humi">Humidity :</div>
+                <div id="humidity"></div>
+            </div>
+        </div>
+    </template>
+    <div id="main"></div>
+    <script src="script.js">defer</script>
+</body>
+</html>
