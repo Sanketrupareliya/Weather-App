@@ -1,53 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div id="header">
-        <div class="cityname">Rajkot</div>
-    </div>
-    <div class="search">
-        <div class="te">Enter City Name</div>
-        <input type="text" id="address" />
-        <button id="button" type="submit">Search</button>
-    </div>
-    <template id="templ">
-        <div class="grid">
-            <div class="flex">
-                <div class="loc">Location :</div>
-                <div id="location"></div>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Invalid City Name</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="flex">
-                <div class="des">Description :</div>
-                <div id="description"></div>
+            <div class="modal-body">
+                Enter the valid city name!
             </div>
-            <div class="flex">
-                <div class="tem">Temprature :</div>
-                <div id="temp"></div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
-            <div class="flex">
-                <div class="feel">Feels Like :</div>
-                <div id="feelsLike"></div>
-            </div>
-            <div class="flex">
-                <div class="wi">Wind Speed :</div>
-                <div id="wind"></div>
-            </div>
-            <div class="flex">
-                <div class="humi">Humidity :</div>
-                <div id="humidity"></div>
-            </div>
+          </div>
         </div>
-    </template>
+      </div>
+    <div id="header">
+      <div class="cityname">Weather</div>
+    </div>
+    <div class="container mt-5">
+      <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+          <div class="row">
+            <div class="te">Enter The City Name:</div>
+          </div>
+          <input type="text" id="address" autocomplete="off" onfocus='this.value = "",matchList.innerHTML=""' />
+          <div class="row" id="auto">
+            <div class="position-absolute zindex-fixed" style="overflow-y: scroll; height:200px;" id="match-list"></div>
+          </div>
+        </div>
+        <div class="col-md-auto">
+          <div class="row" style="height: 40%;"></div>
+          <button id="button" type="submit">Search</button>
+        </div>
+      </div>
+    </div>
+    <div>
+        <template id="templ">
+          <div class="grid">
+            <div class="flex">
+              <div class="loc">Location :</div>
+              <div id="location"></div>
+            </div>
+            <div class="flex">
+              <div class="des">Description :</div>
+              <div id="description"></div>
+            </div>
+            <div class="flex">
+              <div class="tem">Temprature :</div>
+              <div id="temp"></div>
+            </div>
+            <div class="flex">
+              <div class="feel">Feels Like :</div>
+              <div id="feelsLike"></div>
+            </div>
+            <div class="flex">
+              <div class="wi">Wind Speed :</div>
+              <div id="wind"></div>
+            </div>
+            <div class="flex">
+              <div class="humi">Humidity :</div>
+              <div id="humidity"></div>
+            </div>
+          </div>
+        </template>
+
+    </div>
     <div id="main"></div>
-    <script src="script.js">defer</script>
-</body>
+    <script src="script.js">
+      defer
+    </script>
+  </body>
 </html>

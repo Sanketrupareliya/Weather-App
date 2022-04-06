@@ -1,16 +1,23 @@
 const getWeatherData = async (userInput) => {
-    const cityArray = userInput.split(',');
+    const cityArray = userInput.split(' ');
     const city = cityArray[0];
     const url = 'https://api.openweathermap.org/data/2.5/weather?q=' +
         city +
         '&appid=1dd25a275ab8e06be3fd6801b43972dd';
-    const response = await fetch(url);
+    const response = await fetch(url).catch(error=>{alert(error)});
     const data = await response.json();
+    console.log(data)
+    if(data.base==undefined){
+      var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+        keyboard: false
+      })
+      myModal.show()
+    }
     const weather = {
       location: data.name,
       description: data.weather[0].main,
-      temp: Math.round(data.main.temp)+' °C',
-      feelsLike: Math.round(data.main.feels_like) + '°C',
+      temp: Math.round((data.main.temp-273.15))+' °C',
+      feelsLike: Math.round((data.main.feels_like-273.15)) + '°C',
       wind: Math.round(data.wind.speed) + ' km/h',
       humidity: data.main.humidity + '% humidity',
     };
@@ -21,8 +28,54 @@ const getWeatherData = async (userInput) => {
 document.getElementById("button").addEventListener("click", search);
 function search() {
     const city = document.getElementById('address').value;
+    if(address.value.length==0){
+      matchList.innerHTML='';
+    }
     update(getWeatherData(city))
 }
+
+const searc=document.getElementById('address');
+const matchList=document.getElementById('match-list');
+
+
+const searchStates= async searchText=>{
+  const res = await fetch('./cities.json');
+  const data = await res.json();
+
+  let matches=data.filter(state=>{
+    const regx=new RegExp(`^${searchText}`,'gi');
+    return state.name.match(regx) ;
+  });
+
+  if(searchText.length ==0){
+    matches=[];
+    matchList.innerHTML='';
+  }
+
+  outputHtml(matches);
+};
+
+const outputHtml=matches=>{
+  if(matches.length>0){
+    const html=matches.map(match=>`
+    <div class='card card-body my-1' style='width: 190px; cursor: pointer;'> 
+      <div>${match.name}</div>
+    </div>
+    `).join('');
+    matchList.innerHTML=html;
+    matchList.addEventListener("click",function(e){
+      if(e.path[0].textContent.length<15 && e.path[0].textContent.length>0){
+        address.value=e.path[0].textContent;
+        search()
+        matchList.innerHTML='';
+      }
+    })
+  }
+}
+
+searc.addEventListener('input',()=>{searchStates(searc.value)})
+
+
 
 const update = async (promise) => {
     const response = await promise;
