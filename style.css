@@ -60,3 +60,11 @@ body{
 .clear{
     background-image: url("");
 }
+
+.bg-dark{
+    color: #f8f8f8;
+}
+
+#location{
+    text-align: center;
+}

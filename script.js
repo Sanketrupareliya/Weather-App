@@ -19,7 +19,9 @@ const getWeatherData = async (userInput) => {
       temp: Math.round((data.main.temp-273.15))+' °C',
       feelsLike: Math.round((data.main.feels_like-273.15)) + '°C',
       wind: Math.round(data.wind.speed) + ' km/h',
-      humidity: data.main.humidity + '% humidity',
+      humidity: data.main.humidity + '%',
+      pressure: data.main.pressure + ' hPa',
+      Visibility: (data.visibility)/1000 + ' km' 
     };
     return weather;
   };
@@ -30,6 +32,7 @@ function search() {
     const city = document.getElementById('address').value;
     if(address.value.length==0){
       matchList.innerHTML='';
+      matchList.style.display="none";
     }
     update(getWeatherData(city))
 }
@@ -49,6 +52,7 @@ const searchStates= async searchText=>{
 
   if(searchText.length ==0){
     matches=[];
+    matchList.style.display="none";
     matchList.innerHTML='';
   }
 
@@ -58,16 +62,18 @@ const searchStates= async searchText=>{
 const outputHtml=matches=>{
   if(matches.length>0){
     const html=matches.map(match=>`
-    <div class='card card-body my-1' style='width: 190px; cursor: pointer;'> 
+    <div class='card card-body my-1' style='width: 155px; cursor: pointer; margin-right: 0px;'> 
       <div>${match.name}</div>
     </div>
     `).join('');
     matchList.innerHTML=html;
+    matchList.style.display="block";
     matchList.addEventListener("click",function(e){
       if(e.path[0].textContent.length<15 && e.path[0].textContent.length>0){
         address.value=e.path[0].textContent;
         search()
         matchList.innerHTML='';
+        matchList.style.display="none";
       }
     })
   }
@@ -86,6 +92,10 @@ const update = async (promise) => {
 
 const documentUp = (weaob)=>{
     const ob=Object.keys(weaob)
+    if (c==0){
+      const renders=new render();
+      c+=1;
+    }
     ob.forEach((key)=>{
       const DOM = document.getElementById(key);
       DOM.textContent =weaob[key]
@@ -107,5 +117,5 @@ class render{
   }
 }
 
-const renders=new render();
+let c=0;
 

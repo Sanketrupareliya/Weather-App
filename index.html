@@ -25,22 +25,39 @@
     />
   </head>
   <body>
-    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Invalid City Name</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Enter the valid city name!
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
+    <div
+      class="modal fade"
+      id="myModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Invalid City Name
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">Enter the valid city name!</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
+    </div>
     <div id="header">
       <div class="cityname">Weather</div>
     </div>
@@ -50,47 +67,100 @@
           <div class="row">
             <div class="te">Enter The City Name:</div>
           </div>
-          <input type="text" id="address" autocomplete="off" onfocus='this.value = "",matchList.innerHTML=""' />
+          <input
+            type="text"
+            id="address"
+            autocomplete="off"
+            onfocus='this.value = "",matchList.innerHTML=""'
+          />
           <div class="row" id="auto">
-            <div class="position-absolute zindex-fixed" style="overflow-y: scroll; height:200px;" id="match-list"></div>
+            <div
+              class="position-absolute bg-light"
+              style="
+                display: none;
+                overflow-y: scroll;
+                max-height: 200px;
+                width: 200px;
+                z-index: 99;
+              "
+              id="match-list"
+            ></div>
           </div>
         </div>
         <div class="col-md-auto">
-          <div class="row" style="height: 40%;"></div>
+          <div class="row" style="height: 40%"></div>
           <button id="button" type="submit">Search</button>
         </div>
       </div>
     </div>
     <div>
-        <template id="templ">
-          <div class="grid">
-            <div class="flex">
-              <div class="loc">Location :</div>
-              <div id="location"></div>
-            </div>
-            <div class="flex">
-              <div class="des">Description :</div>
-              <div id="description"></div>
-            </div>
-            <div class="flex">
-              <div class="tem">Temprature :</div>
-              <div id="temp"></div>
-            </div>
-            <div class="flex">
-              <div class="feel">Feels Like :</div>
-              <div id="feelsLike"></div>
-            </div>
-            <div class="flex">
-              <div class="wi">Wind Speed :</div>
-              <div id="wind"></div>
-            </div>
-            <div class="flex">
-              <div class="humi">Humidity :</div>
-              <div id="humidity"></div>
+      <template id="templ">
+        <div class="container mt-5 " style="width: 350px;">
+          <div class="row justify-content-md-center">
+            <div class="col">
+              <div class="bg-dark border-0 rounded " style="opacity: 0.7;">
+                <div class="container">
+                  <div class="row justify-content-md-center">
+                    <div class="col" id="location" style="font-size: 36px;"></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-4 pl-0" id="temp" style="font-size: 22px; margin-left: 5px;"></div>
+                    <div class="col-7" id="description" style="font-size: 20px;"></div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col">Feels like</div>
+                  </div>
+                  <div class="row">
+                    <div class="col" id="feelsLike" style="font-size: 22px; margin-top: 0px; margin-left: 5px;"></div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col">Wind Speed</div>
+                    <div class="col">Humidity</div>
+                  </div>
+                  <div class="row">
+                    <div class="col" id="wind" style="font-size: 22px; margin-top: 0px; margin-left: 5px;"></div>
+                    <div class="col" id="humidity" style="font-size: 22px; margin-top: 0px; margin-left: 5px;"></div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col">Visibility</div>
+                    <div class="col">Air Pressure</div>
+                  </div>
+                  <div class="row">
+                    <div class="col" id="Visibility" style="font-size: 22px; margin-top: 0px; margin-left: 5px;"></div>
+                    <div class="col" id="pressure" style="font-size: 22px; margin-top: 0px; margin-left: 5px;"></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </template>
-
+        </div>
+      </template>
+        <!-- <div class="grid">
+          <div class="flex">
+            <div class="loc">Location :</div>
+            <div id="location"></div>
+          </div>
+          <div class="flex">
+            <div class="des">Description :</div>
+            <div id="description"></div>
+          </div>
+          <div class="flex">
+            <div class="tem">Temprature :</div>
+            <div id="temp"></div>
+          </div>
+          <div class="flex">
+            <div class="feel">Feels Like :</div>
+            <div id="feelsLike"></div>
+          </div>
+          <div class="flex">
+            <div class="wi">Wind Speed :</div>
+            <div id="wind"></div>
+          </div>
+          <div class="flex">
+            <div class="humi">Humidity :</div>
+            <div id="humidity"></div>
+          </div>
+        </div> -->
     </div>
     <div id="main"></div>
     <script src="script.js">
