@@ -23,9 +23,22 @@ const getWeatherData = async (userInput) => {
       pressure: data.main.pressure + ' hPa',
       Visibility: (data.visibility)/1000 + ' km' 
     };
+    setbackground(weather)
     return weather;
   };
 
+
+const setbackground= weather=>{
+  console.log(weather.description)
+  switch(weather.description){
+    case 'Clear':
+      document.body.style.backgroundImage ="url(./img/clear.jpg)"
+      break;
+    case 'Clouds':
+      document.body.style.backgroundImage ="url(./img/Cloudy.jpg)"
+      break;
+  }
+}
 
 document.getElementById("button").addEventListener("click", search);
 function search() {
@@ -36,6 +49,8 @@ function search() {
     }
     update(getWeatherData(city))
 }
+
+
 
 const searc=document.getElementById('address');
 const matchList=document.getElementById('match-list');

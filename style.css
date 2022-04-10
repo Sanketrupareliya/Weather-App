@@ -1,6 +1,7 @@
 body{
     font-family: 'Noto Sans', sans-serif;
     margin: 0px;
+    background-size: 1600px;
 }
 #header{
     display: flex;
